@@ -53,6 +53,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnListarDirectoriosOcultos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Lista = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         MenuGDirectorios = new javax.swing.JMenu();
         crearMenuItem = new javax.swing.JMenuItem();
@@ -97,6 +100,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(Lista);
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 0));
+        jButton1.setText("Mostrar Informacion");
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 204));
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -104,8 +117,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -121,7 +139,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                 .addComponent(btnListarArchivosOcultos, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(btnListarDirectoriosOcultos, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,12 +154,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnListarArchivosOcultos)
                     .addComponent(btnListarDirectoriosOcultos))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         desktopPane.add(jPanel1);
-        jPanel1.setBounds(10, 20, 690, 490);
+        jPanel1.setBounds(10, 20, 690, 510);
 
         getContentPane().add(desktopPane, java.awt.BorderLayout.CENTER);
 
@@ -190,9 +212,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        if(txtRuta.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "No a ingresado una ruta no se puede listar");
+        }else{
+            List<String> directorios = controladorDirectorio.listarArchivos(txtRuta.getText());
+            Lista(directorios);
+        }
         
-        List<String> directorios = controladorDirectorio.listarArchivos(txtRuta.getText());
-        Lista(directorios);
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void crearMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearMenuItemActionPerformed
@@ -201,13 +227,23 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_crearMenuItemActionPerformed
 
     private void btnListarArchivosOcultosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarArchivosOcultosActionPerformed
-        List<String> directorios = controladorDirectorio.listarArchivosOcultos(txtRuta.getText());
-        Lista(directorios);
+       if(txtRuta.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "No a ingresado una ruta no se puede listar");
+        }else{
+           List<String> directorios = controladorDirectorio.listarArchivosOcultos(txtRuta.getText());
+           Lista(directorios);
+        }
+        
     }//GEN-LAST:event_btnListarArchivosOcultosActionPerformed
 
     private void btnListarDirectoriosOcultosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDirectoriosOcultosActionPerformed
-        List<String> directorios = controladorDirectorio.listarDirectoriosOcultos(txtRuta.getText());
-        Lista(directorios);
+        if(txtRuta.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "No a ingresado una ruta no se puede listar");
+        }else{
+            List<String> directorios = controladorDirectorio.listarDirectoriosOcultos(txtRuta.getText());
+            Lista(directorios);
+        }
+        
     }//GEN-LAST:event_btnListarDirectoriosOcultosActionPerformed
 
     /**
@@ -255,9 +291,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem eliminarMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem renombrarMenuItem;
     private javax.swing.JTextField txtRuta;

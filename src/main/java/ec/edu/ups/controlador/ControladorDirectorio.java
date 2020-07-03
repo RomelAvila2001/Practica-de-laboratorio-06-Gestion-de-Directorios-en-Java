@@ -64,5 +64,7 @@ public class ControladorDirectorio {
         }
     }
     
-    
+    public void mostrarInformacion(String nombre){
+        
+    }
 }
