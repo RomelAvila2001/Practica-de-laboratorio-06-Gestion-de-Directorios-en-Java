@@ -9,6 +9,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -95,9 +96,9 @@ public class ControladorDirectorio {
                     escritura = "Denegado";
                 }
                 informacion = informacion.concat("\nPermiso de Escritura:" + " " + escritura+"\n");
-                
-                long ultimaModificacion= elemento.lastModified();
-                informacion = informacion.concat("\nUltima Modificacion:" + " " + ultimaModificacion+"\n");
+               
+                SimpleDateFormat formatoFecha = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                informacion = informacion.concat("\nUltima Modificacion:" + " " + formatoFecha.format(elemento.lastModified())+"\n");
                 
             }
         }
