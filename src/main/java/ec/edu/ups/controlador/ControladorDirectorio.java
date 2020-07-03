@@ -34,10 +34,24 @@ public class ControladorDirectorio {
         return lista;
     }
     
+    public List<String> listarArchivosOcultos(String ruta) {
+        List<String> lista = new ArrayList<>();
+        archivo = new File(ruta);
+        archivos = archivo.listFiles();
+        for (File elemento : archivos) {
+            if (elemento.isHidden()) {
+                lista.add(elemento.getName());
+            }
+        }
+        return lista;
+    }
+    
     public void crearDirectorio(String nombre){
         File ruta = new File(nombre);
         if (ruta.exists() == false) {
             ruta.mkdir();
         }
     }
+    
+    
 }

@@ -49,7 +49,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtRuta = new javax.swing.JTextField();
         btnListar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnListarArchivosOcultos = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Lista = new javax.swing.JList<>();
@@ -77,9 +77,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setForeground(new java.awt.Color(255, 255, 0));
-        jButton2.setText("Listar Archivos Ocultos");
+        btnListarArchivosOcultos.setBackground(new java.awt.Color(0, 0, 0));
+        btnListarArchivosOcultos.setForeground(new java.awt.Color(255, 255, 0));
+        btnListarArchivosOcultos.setText("Listar Archivos Ocultos");
+        btnListarArchivosOcultos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarArchivosOcultosActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 0));
@@ -107,7 +112,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnListarArchivosOcultos, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)))
                 .addGap(23, 23, 23))
@@ -122,7 +127,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnListar)
-                    .addComponent(jButton2)
+                    .addComponent(btnListarArchivosOcultos)
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,6 +194,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         controladorDirectorio.crearDirectorio(nombre);
     }//GEN-LAST:event_crearMenuItemActionPerformed
 
+    private void btnListarArchivosOcultosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarArchivosOcultosActionPerformed
+        List<String> directorios = controladorDirectorio.listarArchivosOcultos(txtRuta.getText());
+        Lista(directorios);
+    }//GEN-LAST:event_btnListarArchivosOcultosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,11 +238,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JList<String> Lista;
     private javax.swing.JMenu MenuGDirectorios;
     private javax.swing.JButton btnListar;
+    private javax.swing.JButton btnListarArchivosOcultos;
     private javax.swing.JMenuItem crearMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem eliminarMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
