@@ -39,13 +39,24 @@ public class ControladorDirectorio {
         archivo = new File(ruta);
         archivos = archivo.listFiles();
         for (File elemento : archivos) {
-            if (elemento.isHidden()) {
+            if (elemento.isHidden() && !elemento.isDirectory()) {
                 lista.add(elemento.getName());
             }
         }
         return lista;
     }
     
+    public List<String> listarDirectoriosOcultos(String ruta) {
+        List<String> lista = new ArrayList<>();
+        archivo = new File(ruta);
+        archivos = archivo.listFiles();
+        for (File elemento : archivos) {
+            if (elemento.isHidden() && elemento.isDirectory()) {
+                lista.add(elemento.getName());
+            }
+        }
+        return lista;
+    }
     public void crearDirectorio(String nombre){
         File ruta = new File(nombre);
         if (ruta.exists() == false) {
