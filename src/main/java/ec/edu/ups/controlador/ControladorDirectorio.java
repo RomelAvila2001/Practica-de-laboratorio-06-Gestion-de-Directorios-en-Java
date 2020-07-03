@@ -6,7 +6,11 @@
 package ec.edu.ups.controlador;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -64,7 +68,39 @@ public class ControladorDirectorio {
         }
     }
     
-    public void mostrarInformacion(String nombre){
-        
+    public String mostrarInformacion(String nombre, String ruta){
+        archivo = new File(ruta);
+        archivos = archivo.listFiles();
+        String informacion="";
+        for (File elemento : archivos) {
+            if (elemento.getName().equals(nombre)) {
+                String path = elemento.getAbsolutePath();
+                informacion = informacion.concat("Path:"+""+path+"\n");
+                
+                long tamaño = elemento.length();
+                informacion = informacion.concat("\nTamaño del archivo en bitez:" + " " + tamaño+"\n");
+                
+                String lectura="";
+                if (elemento.canRead()) {
+                    lectura ="Permitido";
+                } else {
+                    lectura ="Denegado";
+                }
+                informacion = informacion.concat("\nPermiso de Lectura:" + " " + lectura+"\n");
+                
+                String escritura="";
+                if (elemento.canWrite()) {
+                    escritura = "Permitido";
+                } else {
+                    escritura = "Denegado";
+                }
+                informacion = informacion.concat("\nPermiso de Escritura:" + " " + escritura+"\n");
+                
+                long ultimaModificacion= elemento.lastModified();
+                informacion = informacion.concat("\nUltima Modificacion:" + " " + ultimaModificacion+"\n");
+                
+            }
+        }
+        return informacion;
     }
 }

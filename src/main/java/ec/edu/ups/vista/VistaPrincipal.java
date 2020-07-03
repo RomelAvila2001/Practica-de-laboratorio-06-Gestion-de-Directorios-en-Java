@@ -55,7 +55,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         Lista = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtinformacion = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         MenuGDirectorios = new javax.swing.JMenu();
         crearMenuItem = new javax.swing.JMenuItem();
@@ -103,12 +103,17 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setForeground(new java.awt.Color(255, 255, 0));
         jButton1.setText("Mostrar Informacion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 204));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txtinformacion.setEditable(false);
+        txtinformacion.setBackground(new java.awt.Color(255, 255, 204));
+        txtinformacion.setColumns(20);
+        txtinformacion.setRows(5);
+        jScrollPane2.setViewportView(txtinformacion);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -246,6 +251,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnListarDirectoriosOcultosActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String nombre= Lista.getSelectedValue();
+        String ruta = txtRuta.getText();
+        String datosDelArchivo = controladorDirectorio.mostrarInformacion(nombre, ruta);
+        txtinformacion.setText(datosDelArchivo);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -296,10 +308,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem renombrarMenuItem;
     private javax.swing.JTextField txtRuta;
+    private javax.swing.JTextArea txtinformacion;
     // End of variables declaration//GEN-END:variables
 
 }
