@@ -33,4 +33,11 @@ public class ControladorDirectorio {
         }
         return lista;
     }
+    
+    public void crearDirectorio(String nombre){
+        File ruta = new File(nombre);
+        if (ruta.exists() == false) {
+            ruta.mkdir();
+        }
+    }
 }

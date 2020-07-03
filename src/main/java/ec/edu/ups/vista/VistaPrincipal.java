@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorDirectorio;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,10 +26,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         controladorDirectorio= new ControladorDirectorio(txtRuta.getText());
     }
 
-    public void Lista (List<String> directorio) {
+    public void Lista (List<String> directorios) {
         DefaultListModel modelo = new DefaultListModel();
         modelo.clear();
-        for (String nombre : directorio) {
+        for (String nombre : directorios) {
             modelo.addElement(nombre);
         }
         Lista.setModel(modelo);
@@ -139,6 +140,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         crearMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         crearMenuItem.setMnemonic('o');
         crearMenuItem.setText("Crear");
+        crearMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearMenuItemActionPerformed(evt);
+            }
+        });
         MenuGDirectorios.add(crearMenuItem);
 
         eliminarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
@@ -177,6 +183,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         List<String> directorios = controladorDirectorio.listarArchivos(txtRuta.getText());
         Lista(directorios);
     }//GEN-LAST:event_btnListarActionPerformed
+
+    private void crearMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearMenuItemActionPerformed
+        String nombre = JOptionPane.showInputDialog("Escriba la direccion y el nombre del directorio que desea crar");
+        controladorDirectorio.crearDirectorio(nombre);
+    }//GEN-LAST:event_crearMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
