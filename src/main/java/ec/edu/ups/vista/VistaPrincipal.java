@@ -25,15 +25,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
         controladorDirectorio= new ControladorDirectorio(txtRuta.getText());
     }
-
-    public void Lista (List<String> directorios) {
-        DefaultListModel modelo = new DefaultListModel();
-        modelo.clear();
-        for (String nombre : directorios) {
-            modelo.addElement(nombre);
-        }
-        Lista.setModel(modelo);
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -321,7 +312,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+    public void Lista (List<String> directorios) {
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.clear();
+        for (String nombre : directorios) {
+            modelo.addElement(nombre);
+        }
+        Lista.setModel(modelo);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> Lista;
     private javax.swing.JMenu MenuGDirectorios;
