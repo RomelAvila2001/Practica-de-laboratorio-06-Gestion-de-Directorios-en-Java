@@ -260,8 +260,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMostarInformacionActionPerformed
 
     private void eliminarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarMenuItemActionPerformed
-        String nombre= Lista.getSelectedValue();
-        controladorDirectorio.eliminarDirectorio(nombre);
+
+        int op=JOptionPane.showConfirmDialog(this,"Desea Eliminar el Drectorio:");
+        if (op == 0) {
+            String ruta = txtRuta.getText() + "/" + Lista.getSelectedValue();
+            controladorDirectorio.eliminarDirectorio(ruta);
+        }
+
+
     }//GEN-LAST:event_eliminarMenuItemActionPerformed
 
     private void renombrarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renombrarMenuItemActionPerformed
