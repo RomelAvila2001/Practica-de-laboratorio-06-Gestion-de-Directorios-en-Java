@@ -69,12 +69,28 @@ public class ControladorDirectorio {
         }
     }
     
+    public void eliminarDirectorio(String nombre) {
+        
+        archivo = new File(nombre);
+        File[] Larchivos = archivo.listFiles();
+        
+        for (int i = 0; i < Larchivos.length; i++) {
+            if (Larchivos[i].isDirectory()) {
+                eliminarDirectorio(Larchivos[i].toString());
+            } else {
+                Larchivos[i].delete();
+            }
+        }
+        archivo.delete();
+    }
+    
     public String mostrarInformacion(String nombre, String ruta){
         archivo = new File(ruta);
         archivos = archivo.listFiles();
         String informacion="";
         for (File elemento : archivos) {
             if (elemento.getName().equals(nombre)) {
+                
                 String path = elemento.getAbsolutePath();
                 informacion = informacion.concat("Path:"+""+path+"\n");
                 
@@ -96,7 +112,7 @@ public class ControladorDirectorio {
                     escritura = "Denegado";
                 }
                 informacion = informacion.concat("\nPermiso de Escritura:" + " " + escritura+"\n");
-               
+                
                 SimpleDateFormat formatoFecha = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
                 informacion = informacion.concat("\nUltima Modificacion:" + " " + formatoFecha.format(elemento.lastModified())+"\n");
                 

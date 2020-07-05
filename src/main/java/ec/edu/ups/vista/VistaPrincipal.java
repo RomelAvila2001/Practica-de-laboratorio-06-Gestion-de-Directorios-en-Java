@@ -188,6 +188,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         eliminarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         eliminarMenuItem.setMnemonic('s');
         eliminarMenuItem.setText("Eliminar");
+        eliminarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarMenuItemActionPerformed(evt);
+            }
+        });
         MenuGDirectorios.add(eliminarMenuItem);
 
         renombrarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
@@ -257,6 +262,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         String datosDelArchivo = controladorDirectorio.mostrarInformacion(nombre, ruta);
         txtinformacion.setText(datosDelArchivo);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void eliminarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarMenuItemActionPerformed
+        String nombre= Lista.getSelectedValue();
+        controladorDirectorio.eliminarDirectorio(nombre);
+    }//GEN-LAST:event_eliminarMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
