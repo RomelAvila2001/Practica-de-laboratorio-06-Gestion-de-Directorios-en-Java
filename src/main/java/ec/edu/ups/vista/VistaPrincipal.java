@@ -53,7 +53,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         btnListarDirectoriosOcultos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Lista = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        btnMostarInformacion = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtinformacion = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
@@ -100,12 +100,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(Lista);
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 0));
-        jButton1.setText("Mostrar Informacion");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMostarInformacion.setBackground(new java.awt.Color(0, 0, 0));
+        btnMostarInformacion.setForeground(new java.awt.Color(255, 255, 0));
+        btnMostarInformacion.setText("Mostrar Informacion");
+        btnMostarInformacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnMostarInformacionActionPerformed(evt);
             }
         });
 
@@ -123,7 +123,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(126, 126, 126)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnMostarInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,7 +163,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnMostarInformacion)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -198,6 +198,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         renombrarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         renombrarMenuItem.setMnemonic('a');
         renombrarMenuItem.setText("Renombrar");
+        renombrarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                renombrarMenuItemActionPerformed(evt);
+            }
+        });
         MenuGDirectorios.add(renombrarMenuItem);
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, java.awt.event.InputEvent.CTRL_MASK));
@@ -256,17 +261,28 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnListarDirectoriosOcultosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnMostarInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarInformacionActionPerformed
         String nombre= Lista.getSelectedValue();
         String ruta = txtRuta.getText();
         String datosDelArchivo = controladorDirectorio.mostrarInformacion(nombre, ruta);
         txtinformacion.setText(datosDelArchivo);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnMostarInformacionActionPerformed
 
     private void eliminarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarMenuItemActionPerformed
         String nombre= Lista.getSelectedValue();
         controladorDirectorio.eliminarDirectorio(nombre);
     }//GEN-LAST:event_eliminarMenuItemActionPerformed
+
+    private void renombrarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renombrarMenuItemActionPerformed
+
+        String nuevo=JOptionPane.showInputDialog("Escriba el nuevo nombre:");
+        String ruta=txtRuta.getText();
+        String actual=Lista.getSelectedValue();
+        controladorDirectorio.renombrarDirectorio(ruta,actual, nuevo);
+        JOptionPane.showMessageDialog(this, "Directorio actualizado");
+        List<String> directorios = controladorDirectorio.listarArchivos(ruta);
+        Lista(directorios);
+    }//GEN-LAST:event_renombrarMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,11 +325,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnListarArchivosOcultos;
     private javax.swing.JButton btnListarDirectoriosOcultos;
+    private javax.swing.JButton btnMostarInformacion;
     private javax.swing.JMenuItem crearMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem eliminarMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
