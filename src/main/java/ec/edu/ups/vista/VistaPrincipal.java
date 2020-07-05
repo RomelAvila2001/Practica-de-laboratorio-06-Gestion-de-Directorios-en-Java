@@ -276,12 +276,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void renombrarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renombrarMenuItemActionPerformed
 
         String nuevo=JOptionPane.showInputDialog("Escriba el nuevo nombre:");
-        String ruta=txtRuta.getText();
-        String actual=Lista.getSelectedValue();
-        controladorDirectorio.renombrarDirectorio(ruta,actual, nuevo);
-        JOptionPane.showMessageDialog(this, "Directorio actualizado");
-        List<String> directorios = controladorDirectorio.listarArchivos(ruta);
-        Lista(directorios);
+        if(!nuevo.equals("")){
+            String ruta = txtRuta.getText();
+            String actual = Lista.getSelectedValue();
+            controladorDirectorio.renombrarDirectorio(actual, nuevo,ruta);
+            JOptionPane.showMessageDialog(this, "Directorio actualizado");
+            List<String> directorios = controladorDirectorio.listarArchivos(ruta);
+            Lista(directorios);
+        }else{JOptionPane.showMessageDialog(this, "no se puede actualizar el nombre falta llenar el campo");}
+        
     }//GEN-LAST:event_renombrarMenuItemActionPerformed
 
     /**

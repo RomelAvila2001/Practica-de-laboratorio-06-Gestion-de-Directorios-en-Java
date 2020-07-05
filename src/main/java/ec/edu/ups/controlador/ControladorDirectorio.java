@@ -84,17 +84,9 @@ public class ControladorDirectorio {
         archivo.delete();
     }
     
-    public void renombrarDirectorio(String ruta,String actual, String nuevo) {
-        archivo = new File(ruta + File.separator + actual);
-        archivos = archivo.listFiles();
-        for (File elemento : archivos) {
-            if(elemento.getName().equals(actual)){
-                File nuevos = new File(elemento.getAbsolutePath() + File.separator + nuevo);
-                archivo.renameTo(nuevos);
-                
-            }
-        }
-        
+    public void renombrarDirectorio(String actual, String nuevo,String ruta) {
+        archivo = new File(ruta+File.separator+ actual);
+        archivo.renameTo(new File(ruta+File.separator+ nuevo));
     }
     
     public String mostrarInformacion(String nombre, String ruta){
