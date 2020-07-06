@@ -71,18 +71,16 @@ public class ControladorDirectorio {
     
    public void eliminarDirectorio(String nombre) {
         archivo = new File(nombre);
-        File[] archivosLista = archivo.listFiles();
-
-        for (int i = 0; i < archivosLista.length; i++) {
-            if (archivosLista[i].isDirectory()) {
-                eliminarDirectorio(archivosLista[i].toString());
+        File[] lArchivos = archivo.listFiles();
+        
+        for (int i = 0; i < lArchivos.length; i++) {
+            if (lArchivos[i].isDirectory()) {
+                eliminarDirectorio(lArchivos[i]+"");
             } else {
-               archivosLista[i].delete();
+               lArchivos[i].delete();
             }
         }
-
         archivo.delete();
-
     }
 
 

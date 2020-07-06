@@ -263,7 +263,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         int respuesta=JOptionPane.showConfirmDialog(this,"Desea Eliminar el Drectorio:");
         if (respuesta == JOptionPane.YES_OPTION ) {
-            String nombre = txtRuta.getText() + "/" + Lista.getSelectedValue();
+            String nombre = txtRuta.getText() + "//" + Lista.getSelectedValue();
             controladorDirectorio.eliminarDirectorio(nombre);
             JOptionPane.showMessageDialog(this, "Directorio Eliminado correctamente");
             List<String> directorios = controladorDirectorio.listarArchivos(txtRuta.getText());
