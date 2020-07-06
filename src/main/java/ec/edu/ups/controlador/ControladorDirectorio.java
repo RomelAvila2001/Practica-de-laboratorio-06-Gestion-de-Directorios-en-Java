@@ -69,20 +69,23 @@ public class ControladorDirectorio {
         }
     }
     
-    public void eliminarDirectorio(String nombre) {
-        
+   public void eliminarDirectorio(String nombre) {
         archivo = new File(nombre);
-        File[] Larchivos = archivo.listFiles();
-        
-        for (int i = 0; i < Larchivos.length; i++) {
-            if (Larchivos[i].isDirectory()) {
-                eliminarDirectorio(Larchivos[i].toString());
+        File[] archivosLista = archivo.listFiles();
+
+        for (int i = 0; i < archivosLista.length; i++) {
+            if (archivosLista[i].isDirectory()) {
+                eliminarDirectorio(archivosLista[i].toString());
             } else {
-                Larchivos[i].delete();
+               archivosLista[i].delete();
             }
         }
+
         archivo.delete();
+
     }
+
+
     
     public void renombrarDirectorio(String actual, String nuevo,String ruta) {
         archivo = new File(ruta+File.separator+ actual);
