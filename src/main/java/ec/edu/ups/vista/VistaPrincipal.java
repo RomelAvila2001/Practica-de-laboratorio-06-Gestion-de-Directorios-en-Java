@@ -229,7 +229,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     private void crearMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearMenuItemActionPerformed
         String nombre = JOptionPane.showInputDialog("Escriba la direccion y el nombre del directorio que desea crar");
-        controladorDirectorio.crearDirectorio(nombre);
+        String ruta=txtRuta.getText() + "//" +nombre;
+        controladorDirectorio.crearDirectorio(ruta);
+        List<String> directorios = controladorDirectorio.listarArchivos(txtRuta.getText());
+        Lista(directorios);
     }//GEN-LAST:event_crearMenuItemActionPerformed
 
     private void btnListarArchivosOcultosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarArchivosOcultosActionPerformed
