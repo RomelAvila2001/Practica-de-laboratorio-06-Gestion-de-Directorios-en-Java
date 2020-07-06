@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author NANCY
+ * @author Romel
  */
 public class VistaPrincipal extends javax.swing.JFrame {
 

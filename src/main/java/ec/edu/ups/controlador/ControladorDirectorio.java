@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author NANCY
+ * @author Romel
  */
 public class ControladorDirectorio {
     private String ruta;
@@ -82,9 +82,7 @@ public class ControladorDirectorio {
         }
         archivo.delete();
     }
-
-
-    
+   
     public void renombrarDirectorio(String actual, String nuevo,String ruta) {
         archivo = new File(ruta+File.separator+ actual);
         archivo.renameTo(new File(ruta+File.separator+ nuevo));
