@@ -1,2 +1,4 @@
 # Practica-de-laboratorio-06-Gestion-de-Directorios-en-Java
-##Lenguaje
+##  Lenguaje
+-Java Jdk 1.8
+-
